@@ -8,10 +8,17 @@ go:
   - 1.8.x
   - 1.9.x  
 
-before_script:
+before_install:
   - go get golang.org/x/tools/cmd/cover
   - go get github.com/mattn/goveralls
+  - go get github.com/alecthomas/gometalinter
+  - gometalinter --install
+
+install:
+  - go install ./...
 
 script:
-  - $GOPATH/bin/goveralls -service=travis-pro
+  - $GOPATH/bin/goveralls -v
+  - $GOPATH/bin/goveralls -v -race
+  - gometalinter --vendor --tests --concurrency=4 --deadline=300s --enable=unused --enable=goimports --enable=gofmt ./...
 
