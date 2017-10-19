@@ -66,7 +66,7 @@ func WithURLInterval(ctx context.Context, log Logger, atlas string, flushInterva
 		timerChan:   make(chan *timer),
 		flushChan:   make(chan chan struct{}),
 	}
-	batches := make(chan batch)
+	batches := make(chan batch, 1)
 	go r.readLoop(batches, flushInterval)
 	go r.postLoop(batches)
 	return r
