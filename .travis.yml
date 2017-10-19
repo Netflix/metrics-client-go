@@ -1,7 +1,7 @@
 language: go
 
 env:
-  - GO_TEST_CMD=goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+  - GO_TEST_CMD="goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN"
 
 go:
   - 1.7.x
